@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
+import { ENUM } from "sequelize";
 
 // MongoDB connection
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/widgets", {
-  useNewUrlParser: true,
-});
+mongoose.connect("mongodb://localhost:27017/widgets");
 
 const widgetSchema = new mongoose.Schema({
     name: { 
@@ -17,7 +16,8 @@ const widgetSchema = new mongoose.Schema({
         type: Number 
     },
     soldout: { 
-        type: String 
+        type: String,
+        enum: ['SOLDOUT', 'ONSALE'] 
     },
     inventory: { 
         type: Number 
@@ -26,3 +26,7 @@ const widgetSchema = new mongoose.Schema({
         type: Array 
     }
 });
+
+const Widgets = mongoose.model('widgets', widgetSchema)
+
+export { Widgets };
