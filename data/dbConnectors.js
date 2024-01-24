@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { Sequelize, DataTypes } from "sequelize";
-import _ from 'loadash'
+import _ from 'lodash'
 import casual from 'casual'
 
 // MongoDB connection
