@@ -20,10 +20,32 @@ export const resolvers = {
         })
 
         newWidget.id = newWidget._id;
-        
+
         try {
             newWidget.save(newWidget)
             return newWidget;
+        } catch (err) {
+            throw new Error(err);
+        }
+    },
+
+    updateProduct: async ({ input }) => {
+        try {
+            const updatedProduct = await Widgets.findOneAndUpdate({ _id: input.id }, input, { new: true });
+            return updatedProduct;
+        } catch (err) {
+            throw new Error(err);
+        }
+    },
+
+    deleteProduct: async ({ id }) => {
+        try {
+            const result = await Widgets.deleteOne({ _id: id });
+            if (result.deletedCount > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (err) {
             throw new Error(err);
         }
