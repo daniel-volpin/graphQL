@@ -9,6 +9,11 @@ export const resolvers = {
             throw new Error(err);
         }
     },
+
+    getAllProducts: async () => {
+        return Widgets.find({})
+    },
+
     createProduct: ({ input }) => {
         const newWidget = new Widgets({
             name: input.name,
